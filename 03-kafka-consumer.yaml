@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: kafka-consumer
+  name: kafka-consumer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kafka-consumer
+  template:
+    metadata:
+      labels:
+        app: kafka-consumer
+    spec:
+      hostname: kafka-consumer
+      containers:
+        - name: kafka-consumer
+          image: kafka-consumer:latest
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: DEMO_GREETING
+              value: "Hello from the environment 4"
