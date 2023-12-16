@@ -20,5 +20,5 @@ spec:
           image: kafka-consumer:latest
           imagePullPolicy: IfNotPresent
           env:
-            - name: DEMO_GREETING
-              value: "Hello from the environment 4"
+            - name: KAFKA_ENDPOINT
+              value: "kafka-service.kafka.svc.cluster.local:9092"

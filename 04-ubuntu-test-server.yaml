@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: ubuntu-test-server
+  name: ubuntu-test-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ubuntu-test-server
+  template:
+    metadata:
+      labels:
+        app: ubuntu-test-server
+    spec:
+      hostname: ubuntu-test-server
+      containers:
+        - name: nginx
+          image: nginx
