@@ -1,8 +1,12 @@
 import { Kafka } from "kafkajs";
 
+const kafkaEndpoint = process.env["KAFKA_ENDPOINT"];
+
+console.log(`Connecting to kafka broker on ${kafkaEndpoint}`);
+
 const kafka = new Kafka({
   clientId: "my-app",
-  brokers: ["kafka-broker:9092"],
+  brokers: [process.env["KAFKA_ENDPOINT"]],
 });
 
 console.log("Hello World");
