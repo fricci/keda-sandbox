@@ -47,7 +47,18 @@ helm install keda kedacore/keda --namespace keda --create-namespace
 
 # Install Kafka
 
-kafka-service.kafka.svc.cluster.local
+Follow the tutorial found here: https://dzone.com/articles/how-to-deploy-apache-kafka-with-kubernetes
+
+But the following should be change:
+I've changed the value of KAFKA_ADVERTISED_LISTENERS parameter in `02-kafka.yaml` from `PLAINTEXT://kafka-broker:9092` to `kafka-service.kafka.svc.cluster.local:9092`.
+According to this, the content of `/etc/hosts` file should be changed from 
+```
+127.0.0.1	kafka-broker
+```
+to
+```
+127.0.0.1 kafka-service.kafka.svc.cluster.local
+```
 
 To start the port forward
 `kubectl port-forward kafka-broker-599478bdd8-gqq9t 9092 -n kafka`
