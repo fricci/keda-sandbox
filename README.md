@@ -51,7 +51,7 @@ Run the following command in terminal
 kubectl port-forward KAFKA_BROKER_POD_NAME 9092 -n kafka
 ```
 
-## For courious minds
+## For curious minds
 
 Follow the tutorial found here: https://dzone.com/articles/how-to-deploy-apache-kafka-with-kubernetes
 
