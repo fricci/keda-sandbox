@@ -31,6 +31,8 @@ while (nrOfMessageAlreadySent < nrOfMessageToSend) {
       {
         key: uuid.v4(),
         value: JSON.stringify({
+          messageId: nrOfMessageAlreadySent,
+          dateOfMessage: new Date(),
           partnerName: faker.person.fullName(),
           partnerEmail: faker.internet.email(),
         }),

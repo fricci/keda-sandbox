@@ -27,4 +27,4 @@ spec:
             - name: WAITING_TIME
               value: "5"
             - name: NUMBER_OF_MESSAGE
-              value: "5000"
+              value: "1000"
