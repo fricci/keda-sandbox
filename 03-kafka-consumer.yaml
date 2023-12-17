@@ -22,3 +22,26 @@ spec:
           env:
             - name: KAFKA_ENDPOINT
               value: "kafka-service.kafka.svc.cluster.local:9092"
+            - name: WAITING_TIME
+              value: "1000"
+
+---
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: kafka-consumer
+spec:
+  scaleTargetRef:
+    name: kafka-consumer
+    envSourceContainerName: kafka-consumer
+  pollingInterval: 3
+  cooldownPeriod: 30
+  minReplicaCount: 0
+  maxReplicaCount: 5
+  triggers:
+    - type: kafka
+      metadata:
+        bootstrapServers: kafka-service.kafka.svc.cluster.local:9092
+        consumerGroup: test-group
+        topic: test-topic
+        lagThreshold: "5"
