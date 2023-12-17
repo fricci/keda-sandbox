@@ -2,19 +2,22 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: ubuntu-test-server
-  name: ubuntu-test-server
+    app: test-server
+  name: test-server
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ubuntu-test-server
+      app: test-server
   template:
     metadata:
       labels:
-        app: ubuntu-test-server
+        app: test-server
     spec:
-      hostname: ubuntu-test-server
+      hostname: test-server
       containers:
         - name: nginx
           image: nginx
+          env:
+            - name: TEST_ENVIRONMENT
+              value: "v2"

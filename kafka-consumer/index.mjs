@@ -5,11 +5,10 @@ const kafkaEndpoint = process.env["KAFKA_ENDPOINT"];
 console.log(`Connecting to kafka broker on ${kafkaEndpoint}`);
 
 const kafka = new Kafka({
-  clientId: "my-app",
+  clientId: "kafka-consumer",
   brokers: [process.env["KAFKA_ENDPOINT"]],
 });
 
-console.log("Hello World");
 console.dir(process.env);
 
 const consumer = kafka.consumer({ groupId: "test-group" });

@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.mjs",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "deploy": "kubectl delete --ignore-not-found=true -f ../03-kafka-consumer.yaml && docker build --tag kafka-consumer . && kind load docker-image kafka-consumer --name local-sandbox && kubectl apply -f ../03-kafka-consumer.yaml",
+    "undeploy": "kubectl delete -f ../03-kafka-consumer.yaml"
   },
   "author": "",
   "license": "ISC",

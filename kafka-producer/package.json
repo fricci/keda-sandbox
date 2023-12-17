@@ -1,0 +1,19 @@
+{
+  "name": "kafka-producer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.mjs",
+  "scripts": {
+    "deploy": "kubectl delete --ignore-not-found=true -f ../04-kafka-producer.yaml && docker build --tag kafka-producer . && kind load docker-image kafka-producer --name local-sandbox && kubectl apply -f ../04-kafka-producer.yaml",
+    "undeploy": "kubectl delete -f ../04-kafka-producer.yaml"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "kafkajs": "^2.2.4",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^8.3.1"
+  }
+}

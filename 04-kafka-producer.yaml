@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: kafka-producer
+  name: kafka-producer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kafka-producer
+  template:
+    metadata:
+      labels:
+        app: kafka-producer
+    spec:
+      hostname: kafka-producer
+      containers:
+        - name: kafka-producer
+          image: kafka-producer:latest
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: KAFKA_ENDPOINT
+              value: "kafka-service.kafka.svc.cluster.local:9092"
+            - name: TOPIC_NAME
+              value: "test-topic"
+            - name: WAITING_TIME
+              value: "500"
+            - name: NUMBER_OF_MESSAGE
+              value: "5"
