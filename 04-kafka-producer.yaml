@@ -25,6 +25,6 @@ spec:
             - name: TOPIC_NAME
               value: "test-topic"
             - name: WAITING_TIME
-              value: "500"
-            - name: NUMBER_OF_MESSAGE
               value: "5"
+            - name: NUMBER_OF_MESSAGE
+              value: "5000"

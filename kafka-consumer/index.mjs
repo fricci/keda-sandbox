@@ -2,6 +2,7 @@ import { Kafka } from "kafkajs";
 
 const kafkaEndpoint = process.env["KAFKA_ENDPOINT"];
 const waitingTime = process.env["WAITING_TIME"];
+const topicName = process.env["TOPIC_NAME"];
 
 console.log(`Connecting to kafka broker on ${kafkaEndpoint}`);
 
@@ -15,14 +16,14 @@ console.dir(process.env);
 const consumer = kafka.consumer({ groupId: "test-group" });
 
 await consumer.connect();
-await consumer.subscribe({ topic: "test-topic", fromBeginning: true });
+await consumer.subscribe({ topic: topicName });
 
 await consumer.run({
   eachMessage: async ({ topic, partition, message }) => {
-    console.log({
-      value: message.value.toString(),
-    });
+    console.log(`${new Date().toISOString()} | ${message.value.toString()}`);
+    consumer.pause([{ topic: topicName }]);
     await wait(waitingTime);
+    consumer.resume([{ topic: topicName }]);
   },
 });
 
