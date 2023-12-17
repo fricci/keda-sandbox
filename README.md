@@ -19,16 +19,7 @@ Add the following line to the `/etc/hosts`
 127.0.0.1 kafka-service.kafka.svc.cluster.local
 ```
 
-To start the port forward
-`kubectl port-forward kafka-broker-599478bdd8-gqq9t 9092 -n kafka`
 
-# Build and install the image
-
-```
-docker build --tag kafka-consumer .
-kind load docker-image kafka-consumer --name local-sandbox
-kubectl apply -f ./03-kafka-consumer.yaml
-```
 
 # Install KEDA
 
@@ -57,3 +48,30 @@ helm install keda kedacore/keda --namespace keda --create-namespace
 # Install Kafka
 
 kafka-service.kafka.svc.cluster.local
+
+To start the port forward
+`kubectl port-forward kafka-broker-599478bdd8-gqq9t 9092 -n kafka`
+
+# Producer
+## Build / rebuild / reinstall the producer
+in `kafka-producer` directory, execute the following command
+```
+npm run deploy
+```
+## Delete the producer
+in `kafka-produer` directory, execute the following command
+```
+npm run undeploy
+```
+
+# Consumer
+## Build / rebuild / reinstall the consumer
+in `kafka-consumer` directory, execute the following command
+```
+npm run deploy
+```
+## Delete the consumer
+in `kafka-produer` directory, execute the following command
+```
+npm run undeploy
+```

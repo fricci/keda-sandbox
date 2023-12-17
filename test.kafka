@@ -1,3 +1,0 @@
-CONSUMER consumer-group-id
-topic: test-topic
-from: earliest
